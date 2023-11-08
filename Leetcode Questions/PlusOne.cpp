@@ -7,8 +7,8 @@ public:
     vector<int> plusOne(vector<int>& digits) {
         vector<int> ans;
         int num = 0;
-        for (int i = digits.size(); i >= 0; i--) {
-            num = num * 10 + digits[i];
+        for (int i = digits.size()-1; i >= 0; i--) {
+            num = (num * 10) + digits[i];
         }
         num = num + 1;
         int numCopy = num;
@@ -26,4 +26,5 @@ int main()
 {
     vector<int> digits = {1,2,3};
     Solution sol;
+    
 }
