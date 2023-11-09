@@ -12,27 +12,35 @@ struct ListNode {
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        int count = 1;
+        int count = 0;
         ListNode * headCopy = head;
-        while (headCopy->next != nullptr) {
-            count = count + 1;
+        ListNode * cur = head;
+
+        // Count how many nodes are in Linked List
+        while (headCopy) {
             headCopy = headCopy->next;
-        }
-        int total = count - n;
-        ListNode * ans = head;
-        while (total > 1) {
-            total = total - 1;
-            head = head->next;
-        }
-        
-        if (head->next == nullptr) {
-            return head;
-        }
-        else {
-            head->next = head->next->next;
+            count++;
         }
 
-        return ans;
+        int total = count - n;
+        int i = 1;
+        
+        // find the nth from end node
+        while (cur->next && i < total) {
+            cur = cur->next;
+            i++;
+        }
+        
+        //remove first node
+        if (total == 0) {
+            head = head->next;
+        }
+        //skip n from end node
+        else {
+            cur->next = cur->next->next;
+        }
+
+        return head;
         
     }
 };
